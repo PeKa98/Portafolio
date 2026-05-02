@@ -63,13 +63,17 @@ html {
 
 .menu {
   display: flex;
-  width: auto;
-  justify-content: center;
+  width: 100%;
+  justify-content: flex-start;
   gap: 1.5rem;
 } 
 
 .menu li {
   list-style: none;
+}
+
+.menu .lang-item {
+  margin-left: auto;
 }
 
 .menu a {
@@ -92,6 +96,9 @@ html {
   background-color: transparent;
   color: var(--color-text);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
 }
 
@@ -370,6 +377,10 @@ span {
     width: 100%;
     gap: 1rem;
     align-items: flex-start;
+  }
+
+  .menu .lang-item {
+    margin-left: 0;
   }
 
   .lang-toggle {
