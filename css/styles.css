@@ -1,5 +1,16 @@
   @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
+  :root {
+    --color-bg: #000000;
+    --color-accent: #1e88e5;
+    --color-text: #ffffff;
+    --color-text-muted: #cfcfcf;
+    --color-surface: #121212;
+    --color-border: #2a2a2a;
+    --color-accent-strong: #1565c0;
+    --shadow-accent: 1px 3px 11px -5px rgba(30, 136, 229, 0.8);
+  }
+
 * {
   margin: 0;
   padding: 0;
@@ -9,13 +20,17 @@
 body {
   font-family: 'Salsa', cursive;
   overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .wrapper {
   width: 100%;
   height: 100vh;
-  background-color: darkgreen;
-  color: antiquewhite;
 }
 
 .navbar {
@@ -45,16 +60,16 @@ body {
 }
 
 .menu a {
-  color:aliceblue
+  color: var(--color-text);
+  transition: color 0.3s ease-in;
 }
 
 .menu .active {
-  color: chartreuse;
+  color: var(--color-accent);
 }
 
 .menu a:hover {
-  color:whitesmoke;
-  transition: ease-in 0.3s;
+  color: var(--color-text-muted);
 }
 
 .main {
@@ -71,28 +86,28 @@ h1 {
 } 
 
 span {
-  color: yellowgreen;
+  color: var(--color-accent);
 }
 
 .download-cv {
   padding: 10px 20px;
-  background-color: chartreuse;
+  background-color: var(--color-accent);
   border: none;
   border-radius: 20px;
   margin-top: 10px;
   cursor: pointer;  
-  box-shadow: 1px 3px 11px -5px yellowgreen; 
+  box-shadow: var(--shadow-accent); 
+  transition: background-color 0.3s ease-in;
 }
 
 .download-cv:hover {
-  background-color: whitesmoke;
-  transition: ease-in 0.3s;
+  background-color: var(--color-text);
 }
 
 .main img {
   width: 350px;
   height: 420px;
-  border: 7px solid yellowgreen;
+  border: 7px solid var(--color-accent);
 }
 
 .about {
@@ -115,27 +130,27 @@ span {
 
 .aboutme h2 {
   font-size: 2rem;
-  color: black;
+  color: var(--color-text);
 }
 
 .divider {
   width: 60px;
   height: 4px;
-  background-color: yellowgreen;
+  background-color: var(--color-accent);
   margin-top: 10px;
   margin-bottom: 2em;
 }
 
 .about p {
   font-size: 1.2rem;
-  color: black;
+  color: var(--color-text-muted);
   margin-bottom: 1em;
 }
 
 .portfolio {
   width: 100vw;
-  color: whitesmoke;
-  background-color: darkgreen;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 .portfolio-headings {
@@ -158,9 +173,16 @@ span {
 .card {
   width: 300px;
   height: 300px;
-  color: whitesmoke;
-  background-color: yellowgreen;
+  color: var(--color-text);
+  background-color: var(--color-surface);
   margin: 1em;
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s ease-in, box-shadow 0.3s ease-in;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-accent);
 }
 
 .card-img {
@@ -180,7 +202,7 @@ span {
 }
 
 .projects-links a {
-  color: black;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -195,7 +217,7 @@ span {
 }
 
 .card .project-details a {
-  color: black;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -226,42 +248,42 @@ span {
 .form-control input {
   padding: 10px 30px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 1em;
   background: none;
-  color: black;
+  color: var(--color-text);
 }
 
 .form-control textarea {
   height: 150px;
   padding: 10px 30px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 1em;
   background: none;
-  color: black;
+  color: var(--color-text);
 }
 
 .submit-btn {
   padding: 10px 30px;
-  background-color: chartreuse;
+  background-color: var(--color-accent);
   border: none;
   border-radius: 20px;
   margin-top: 10px;
   cursor: pointer;  
-  box-shadow: 1px 3px 11px -5px yellowgreen; 
+  box-shadow: var(--shadow-accent); 
+  transition: background-color 0.3s ease-in;
 }
 
 .submit-btn:hover {
-  background-color: whitesmoke;
-  transition: ease-in 0.3s;
+  background-color: var(--color-text);
 } 
 
 .footer {
   width: 100%;
   height: 200px;
-  background-color: darkgreen;
-  color: white;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,4 +305,38 @@ span {
   display: flex;
   justify-content: space-evenly;
   width: 300px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    width: 90vw;
+    height: auto;
+    text-align: center;
+  }
+
+  .main img {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .portfolio .container {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 320px;
+  }
 }
