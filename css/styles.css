@@ -77,7 +77,7 @@ html {
 }
 
 .menu a {
-  color: var(--color-text);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.3s ease-in;
 }
@@ -88,7 +88,7 @@ html {
 }
 
 .menu a:visited {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .menu .active {
