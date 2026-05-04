@@ -77,16 +77,21 @@ html {
 }
 
 .menu a {
-  color: var(--color-text);
+  color: var(--color-accent);
+  text-decoration: none;
   transition: color 0.3s ease-in;
 }
 
-.menu .active {
+.menu a:visited {
   color: var(--color-accent);
 }
 
+.menu .active {
+  color: var(--color-text);
+}
+
 .menu a:hover {
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
 .lang-toggle {
