@@ -27,10 +27,10 @@
 <header>
         <nav class="navbar">
             <ul class="menu">
-                <li><a class="active" href="#Hero"><i class="fa-solid fa-house"></i><span class="nav-label" data-i18n="navHome">Inicio</span></a></li>
-                <li><a class="active" href="#About"><i class="fa-solid fa-person"></i><span class="nav-label" data-i18n="navAbout">Sobre mi</span></a></li>
-                <li><a class="active" href="#Portfolio"><i class="fa-brands fa-github"></i><span class="nav-label" data-i18n="navPortfolio">Portafolio</span></a></li>
-                <li><a class="active" href="#Contact"><i class="fa-solid fa-paper-plane"></i><span class="nav-label" data-i18n="navContact">Contacto</span></a></li>
+                <li><a href="#Hero"><i class="fa-solid fa-house"></i><span class="nav-label" data-i18n="navHome">Inicio</span></a></li>
+                <li><a href="#About"><i class="fa-solid fa-person"></i><span class="nav-label" data-i18n="navAbout">Sobre mi</span></a></li>
+                <li><a href="#Portfolio"><i class="fa-brands fa-github"></i><span class="nav-label" data-i18n="navPortfolio">Portafolio</span></a></li>
+                <li><a href="#Contact"><i class="fa-solid fa-paper-plane"></i><span class="nav-label" data-i18n="navContact">Contacto</span></a></li>
                 <li class="lang-item">
                     <button class="lang-toggle" id="langToggle" type="button" data-i18n="toggleLabel">EN</button>
                 </li>
@@ -254,9 +254,13 @@
         applyTranslations(currentLang);
     });
 
-    window.addEventListener('scroll', function () {
-        const sections = ['Hero', 'About', 'Portfolio', 'Contact'];
-        const links = document.querySelectorAll('.navbar a');
+    const sections = ['Hero', 'About', 'Portfolio', 'Contact'];
+    const navLinks = document.querySelectorAll('.navbar a');
+
+    function updateActiveNav() {
+        let activeId = sections[0];
+        const nav = document.querySelector('.navbar');
+        const threshold = nav ? nav.offsetHeight + 12 : 120;
 
         sections.forEach(function (id) {
             const section = document.getElementById(id);
@@ -265,18 +269,24 @@
             }
 
             const position = section.getBoundingClientRect();
-            const threshold = 120;
             if (position.top <= threshold && position.bottom >= threshold) {
-                links.forEach(function (link) {
-                    link.classList.remove('active');
-                });
-                const activeLink = document.querySelector('a[href="#' + id + '"]');
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+                activeId = id;
             }
         });
-    });
+
+        navLinks.forEach(function (link) {
+            link.classList.remove('active');
+        });
+
+        const activeLink = document.querySelector('.navbar a[href="#' + activeId + '"]');
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+    }
+
+    updateActiveNav();
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
 </script>
 
 </body>

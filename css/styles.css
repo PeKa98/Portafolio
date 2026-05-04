@@ -29,6 +29,7 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
+  scroll-snap-type: y mandatory;
 }
 
 .wrapper {
@@ -128,11 +129,14 @@ html {
 }
 
 .section {
-  min-height: 100vh;
+  height: calc(100vh - var(--nav-height));
   width: 100%;
   padding: 6rem 10vw 4rem;
   display: flex;
   align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: var(--nav-height);
 }
 
 .hero {
@@ -176,7 +180,9 @@ span {
 .hero img {
   width: 100%;
   max-width: 360px;
+  max-height: calc(100vh - var(--nav-height) - 8rem);
   height: auto;
+  object-fit: contain;
   border: 7px solid var(--color-accent);
   justify-self: center;
   align-self: center;
