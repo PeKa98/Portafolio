@@ -91,7 +91,9 @@ html {
   color: var(--color-accent);
 }
 
-.menu .active {
+.menu a.active,
+.menu a.active:visited,
+.menu a.active:hover {
   color: var(--color-text);
   font-weight: 700;
 }
@@ -140,6 +142,14 @@ html {
   gap: 2rem;
 }
 
+.info-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 h1 {
   font-size: 3rem;
 } 
@@ -168,6 +178,8 @@ span {
   max-width: 360px;
   height: auto;
   border: 7px solid var(--color-accent);
+  justify-self: center;
+  align-self: center;
 }
 
 .about {
