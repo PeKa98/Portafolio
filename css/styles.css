@@ -96,7 +96,7 @@ html {
   font-weight: 700;
 }
 
-.menu a:hover {
+.menu a:not(.active):hover {
   color: var(--color-text);
 }
 
