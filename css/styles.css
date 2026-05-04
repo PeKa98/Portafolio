@@ -23,13 +23,12 @@ body {
   overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-text);
-  padding-top: var(--nav-height);
+  padding-top: 0;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
-  scroll-snap-type: y mandatory;
 }
 
 .wrapper {
@@ -129,13 +128,12 @@ html {
 }
 
 .section {
-  height: calc(100vh - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
   width: 100%;
-  padding: 6rem 10vw 4rem;
+  padding: 2.5rem 8vw;
   display: flex;
   align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   scroll-margin-top: var(--nav-height);
 }
 
@@ -180,7 +178,7 @@ span {
 .hero img {
   width: 100%;
   max-width: 360px;
-  max-height: calc(100vh - var(--nav-height) - 8rem);
+  max-height: calc(100dvh - var(--nav-height) - 9rem);
   height: auto;
   object-fit: contain;
   border: 7px solid var(--color-accent);
@@ -190,22 +188,32 @@ span {
 
 .about {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
+  height: 100%;
+  place-items: center;
 }
 
 .about img {
-  height: 100%;
-  width: 100%;
-  grid-column: 1/6;
+  width: min(100%, 460px);
+  height: auto;
+  max-height: calc(100% - 1rem);
   border-radius: 8px;
   object-fit: cover;
+  align-self: center;
+  justify-self: center;
 }
 
 .aboutme {
-  grid-column: 6/10;
-  padding: 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 520px;
+  align-self: center;
+  justify-self: center;
 }
 
 .aboutme h2 {
@@ -229,9 +237,10 @@ span {
 
 .portfolio {
   color: var(--color-text);
-  color: var(--color-text);
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+  height: 100%;
 }
 
 .portfolio-headings {
@@ -243,23 +252,67 @@ span {
   font-size: 2rem;
 }
 
-.portfolio .container {
-  color: var(--color-accent);
+.portfolio-carousel {
+  position: relative;
+  width: 100%;
   display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  color: var(--color-accent);
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+}
+
+.carousel-btn:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.portfolio .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 0;
+  gap: 1.5rem;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0.5rem 0.5rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.portfolio .container::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
   width: 300px;
-  height: 300px;
+  height: auto;
+  min-height: 300px;
   color: var(--color-text);
   background-color: var(--color-surface);
-  margin: 1em;
-  border: 1px solid var(--color-border);
+  margin: 0;
+  border: 2px solid var(--color-accent);
+  border-radius: 12px;
   transition: transform 0.3s ease-in, box-shadow 0.3s ease-in;
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -269,9 +322,10 @@ span {
 
 .card-img {
   width: 100%;
-  height: 150px;
+  height: 160px;
   background-image: url(../img/proyecto.jpeg);
   background-size: cover;
+  background-position: center;
 }
 
 .card-tittle {
@@ -317,8 +371,20 @@ span {
 
 .container-contact {
   width: 100%;
-  padding: 2em 0;
+  padding: 0;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  width: min(720px, 100%);
+}
+
+.contact-form h4 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-control {
@@ -371,10 +437,12 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .footer-content h2 {
   font-size: 2em;
+  margin-bottom: 0.3rem;
 }
 
 .footer-content h5 {
@@ -388,6 +456,7 @@ span {
   display: flex;
   justify-content: space-evenly;
   width: 300px;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

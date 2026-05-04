@@ -63,8 +63,12 @@
             <h2 data-i18n="portfolioTitle">Mi Portafolio</h2>
             <div class="divider"></div>
         </div>
-        <div class="container">
-            <div class="card">
+        <div class="portfolio-carousel">
+            <button class="carousel-btn prev" type="button" aria-label="Proyecto anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="container portfolio-track">
+                <div class="card">
                 <div class="card-img"></div>
                     <div class="card-tittle">
                         <h3 data-i18n="projectTitle">Proyecto 1</h3>
@@ -110,13 +114,12 @@
                     </div>
             </div>
             </div>
+            <button class="carousel-btn next" type="button" aria-label="Proyecto siguiente">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
     </section>
     <section id="Contact" class="section contact">
-        <div class="contact-headings">
-            <h2 data-i18n="contactTitle">Contacto</h2>
-            <div class="divider"></div>
-        </div>
         <div class="container-contact">
             <div class="contact-form">
                 <h4 data-i18n="contactSubtitle">Enviame un mensaje...</h4>
@@ -256,11 +259,13 @@
 
     const sections = ['Hero', 'About', 'Portfolio', 'Contact'];
     const navLinks = document.querySelectorAll('.navbar a');
+    const portfolioTrack = document.querySelector('.portfolio-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
 
     function updateActiveNav() {
         let activeId = sections[0];
-        const nav = document.querySelector('.navbar');
-        const threshold = nav ? nav.offsetHeight + 12 : 120;
+        const midpoint = window.innerHeight / 2;
 
         sections.forEach(function (id) {
             const section = document.getElementById(id);
@@ -269,7 +274,7 @@
             }
 
             const position = section.getBoundingClientRect();
-            if (position.top <= threshold && position.bottom >= threshold) {
+            if (position.top <= midpoint && position.bottom >= midpoint) {
                 activeId = id;
             }
         });
@@ -287,6 +292,29 @@
     updateActiveNav();
     window.addEventListener('scroll', updateActiveNav);
     window.addEventListener('load', updateActiveNav);
+    window.addEventListener('resize', updateActiveNav);
+
+    function getCardScrollAmount() {
+        if (!portfolioTrack) {
+            return 0;
+        }
+        const card = portfolioTrack.querySelector('.card');
+        if (!card) {
+            return 0;
+        }
+        const gap = 24;
+        return card.offsetWidth + gap;
+    }
+
+    if (portfolioTrack && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', function () {
+            portfolioTrack.scrollBy({ left: -getCardScrollAmount(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', function () {
+            portfolioTrack.scrollBy({ left: getCardScrollAmount(), behavior: 'smooth' });
+        });
+    }
 </script>
 
 </body>
