@@ -82,12 +82,18 @@ html {
   transition: color 0.3s ease-in;
 }
 
+.menu a i,
+.menu a .nav-label {
+  color: inherit;
+}
+
 .menu a:visited {
   color: var(--color-accent);
 }
 
 .menu .active {
   color: var(--color-text);
+  font-weight: 700;
 }
 
 .menu a:hover {
