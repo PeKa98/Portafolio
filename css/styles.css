@@ -77,7 +77,7 @@ html {
 }
 
 .menu a {
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
   transition: color 0.3s ease-in;
 }
@@ -88,16 +88,16 @@ html {
 }
 
 .menu a:visited {
-  color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .menu .active {
-  color: var(--color-text);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
 .menu a:hover {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .lang-toggle {
@@ -211,13 +211,13 @@ span {
 
 .portfolio {
   color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--color-text);
   flex-direction: column;
   align-items: flex-start;
 }
 
 .portfolio-headings {
-  width: 100%;
+  color: var(--color-text);
   padding-bottom: 2em;
 }
 
@@ -226,12 +226,12 @@ span {
 }
 
 .portfolio .container {
-  width: 100%;
+  color: var(--color-accent);
   display: flex;
   justify-content: center;
   margin: 0 auto;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  color: var(--color-accent);
 }
 
 .card {
