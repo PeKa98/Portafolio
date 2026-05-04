@@ -92,12 +92,12 @@ html {
 }
 
 .menu .active {
-  color: var(--color-accent);
+  color: var(--color-text);
   font-weight: 700;
 }
 
 .menu a:hover {
-  color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .lang-toggle {
